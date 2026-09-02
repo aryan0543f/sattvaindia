@@ -67,15 +67,142 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     
+    /* ===== ENHANCED ANIMATIONS ===== */
+    
+    /* 1. Enhanced Hover Lift with Glow */
     .hover-lift {
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
     .hover-lift:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px -10px rgba(138, 28, 20, 0.25);
+    }
+
+    /* 2. Card Glow Effect */
+    .hover-lift::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #EAB308 0%, #8A1C14 100%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.4s ease;
+      filter: blur(12px);
+    }
+    .hover-lift:hover::before {
+      opacity: 0.4;
+    }
+
+    /* 3. Enhanced Button Styles */
+    .btn-enhanced {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-enhanced:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -8px rgba(138, 28, 20, 0.5);
+    }
+    .btn-enhanced:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
+    /* Button Ripple Effect */
+    .btn-enhanced::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    .btn-enhanced:active::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Button Shine Effect */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-shine:hover::before {
+      left: 100%;
+    }
+
+    /* 4. Smooth Drawer Animation */
+    #quoteDrawer {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+    #drawerBackdrop {
+      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    #drawerBackdrop:not(.hidden) {
+      backdrop-filter: blur(4px);
+    }
+
+    /* 5. Navbar Scroll Effect */
+    nav {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    nav.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(12px);
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8A1C14 0%, #EAB308 100%);
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.5);
+    }
+
+    /* Accessibility: Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Enhanced Icon Hover */
+    .icon-hover {
+      transition: transform 0.2s ease;
+    }
+    .icon-hover:hover {
+      transform: scale(1.15);
     }
   </style>
 </head>
 <body class="bg-spice-surface text-stone-800 font-sans antialiased selection:bg-spice-700 selection:text-white pb-28 md:pb-0 overflow-x-hidden">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" style="width: 0%"></div>
 
   <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
@@ -127,7 +254,7 @@
           <span class="hidden sm:inline" data-i18n="navQuoteDrawer">Quote Drawer</span>
           <span id="navCartCount" class="w-5 h-5 rounded-full bg-spice-700 text-white text-[11px] font-bold flex items-center justify-center transition-transform">0</span>
         </button>
-        <a href="#quote-section" class="hidden sm:inline-flex items-center gap-2 bg-spice-700 hover:bg-spice-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md transition-all hover:shadow-lg active:scale-95">
+        <a href="#quote-section" class="hidden sm:inline-flex items-center gap-2 bg-spice-700 hover:bg-spice-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider shadow-md btn-enhanced btn-shine">
           <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="btnBulkPricing">Submit Order</span>
         </a>
       </div>
@@ -156,7 +283,7 @@
           </p>
 
           <div class="pt-2 flex flex-wrap gap-4 items-center">
-            <a href="#catalog" class="inline-flex items-center gap-2 bg-gradient-to-r from-spice-amber to-amber-500 hover:from-amber-500 hover:to-amber-600 text-spice-900 font-extrabold px-7 py-4 rounded-xl shadow-xl hover:shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
+            <a href="#catalog" class="inline-flex items-center gap-2 bg-gradient-to-r from-spice-amber to-amber-500 hover:from-amber-500 hover:to-amber-600 text-spice-900 font-extrabold px-7 py-4 rounded-xl shadow-xl hover:shadow-amber-500/20 transition-all btn-enhanced btn-shine">
               <i data-lucide="layers" class="w-5 h-5"></i> <span data-i18n="heroOrderBtn">Build Custom Batch Order</span>
             </a>
             <button onclick="openCertModal('fssai')" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold px-6 py-4 rounded-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95">
@@ -578,7 +705,7 @@
             <textarea id="bizRequirements" rows="5" required placeholder="Select items from the catalog or open the Quote Drawer to customize units..." class="w-full px-4 py-3 text-sm bg-stone-50 border border-stone-300 rounded-xl focus:outline-none focus:border-spice-700 font-mono text-xs transition-all"></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-spice-700 hover:bg-spice-800 text-white font-extrabold py-4 px-6 rounded-xl flex items-center justify-center gap-2.5 shadow-lg hover:shadow-spice-700/30 transition-all text-sm uppercase tracking-wider hover:scale-[1.01] active:scale-95">
+          <button type="submit" class="w-full bg-spice-700 hover:bg-spice-800 text-white font-extrabold py-4 px-6 rounded-xl flex items-center justify-center gap-2.5 shadow-lg hover:shadow-spice-700/30 text-sm uppercase tracking-wider btn-enhanced btn-shine">
             <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="formBtnSend">Transmit Order Quote to WhatsApp Desk</span>
           </button>
         </form>
@@ -1487,6 +1614,61 @@
       renderCatalog();
       renderDrawer();
       lucide.createIcons();
+
+      // ===== ENHANCED ANIMATIONS INITIALIZATION =====
+      
+      // 1. Scroll Progress Bar
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scroll-progress').style.width = scrolled + '%';
+      });
+
+      // 2. Navbar Scroll Effect
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // 3. Enhanced Drawer Animations - Override toggleDrawer
+      const originalToggleDrawer = window.toggleDrawer;
+      window.toggleDrawer = function(show) {
+        const drawer = document.getElementById('quoteDrawer');
+        const backdrop = document.getElementById('drawerBackdrop');
+        if (show) {
+          renderDrawer();
+          backdrop.classList.remove('hidden');
+          setTimeout(() => backdrop.style.opacity = '1', 10);
+          drawer.style.transform = 'translateX(0)';
+        } else {
+          drawer.style.transform = 'translateX(100%)';
+          backdrop.style.opacity = '0';
+          setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+      };
+
+      // 4. Add smooth scroll padding to account for fixed navbar
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              const offsetTop = target.offsetTop - 80;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
     });
   </script>
 </body>
