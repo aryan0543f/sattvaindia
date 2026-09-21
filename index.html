@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <link rel="stylesheet" href="order-enhancements.css" />
+  <link rel="stylesheet" href="styles.css" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -64,273 +65,6 @@
   </script>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    
-    /* ===== ENHANCED ANIMATIONS ===== */
-    
-    /* 1. Enhanced Hover Lift with Glow */
-    .hover-lift {
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-    .hover-lift:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px -10px rgba(138, 28, 20, 0.25);
-    }
-
-    /* 2. Card Glow Effect */
-    .hover-lift::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, #EAB308 0%, #8A1C14 100%);
-      opacity: 0;
-      z-index: -1;
-      transition: opacity 0.4s ease;
-      filter: blur(12px);
-    }
-    .hover-lift:hover::before {
-      opacity: 0.4;
-    }
-
-    /* 3. Enhanced Button Styles */
-    .btn-enhanced {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .btn-enhanced:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px -8px rgba(138, 28, 20, 0.5);
-    }
-    .btn-enhanced:active {
-      transform: translateY(0) scale(0.98);
-    }
-    
-    /* Button Ripple Effect */
-    .btn-enhanced::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-    .btn-enhanced:active::after {
-      width: 300px;
-      height: 300px;
-    }
-
-    /* Button Shine Effect */
-    .btn-shine {
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-shine::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.6s ease;
-    }
-    .btn-shine:hover::before {
-      left: 100%;
-    }
-
-    /* 4. Smooth Drawer Animation */
-    #quoteDrawer {
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-    }
-    #drawerBackdrop {
-      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
-    }
-    #drawerBackdrop:not(.hidden) {
-      backdrop-filter: blur(4px);
-    }
-
-    /* 5. Navbar Scroll Effect */
-    nav {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    nav.scrolled {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(12px);
-    }
-
-    /* Scroll Progress Bar */
-    #scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #8A1C14 0%, #EAB308 100%);
-      z-index: 9999;
-      transition: width 0.1s ease-out;
-      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.5);
-    }
-
-    /* Accessibility: Respect reduced motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Enhanced Icon Hover */
-    .icon-hover {
-      transition: transform 0.2s ease;
-    }
-    .icon-hover:hover {
-      transform: scale(1.15);
-    }
-
-    /* ===== ORDER FLOW ENHANCEMENTS ===== */
-    
-    /* Field Validation Styles */
-    .field-valid {
-      border-color: #10B981 !important;
-      background-color: #F0FDF4 !important;
-    }
-    .field-invalid {
-      border-color: #EF4444 !important;
-      background-color: #FEF2F2 !important;
-    }
-    .field-error {
-      color: #DC2626;
-      font-size: 11px;
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      animation: slideDown 0.2s ease;
-    }
-    .field-success {
-      color: #10B981;
-      font-size: 11px;
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      animation: slideDown 0.2s ease;
-    }
-    
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-5px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Progress Stepper */
-    .progress-step {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-    }
-    .progress-step::after {
-      content: '';
-      position: absolute;
-      left: 20px;
-      top: 40px;
-      width: 2px;
-      height: calc(100% - 40px);
-      background: #E5E7EB;
-      z-index: -1;
-    }
-    .progress-step:last-child::after {
-      display: none;
-    }
-    .progress-step.active .step-circle {
-      background: #8A1C14;
-      color: white;
-      border-color: #8A1C14;
-    }
-    .progress-step.completed .step-circle {
-      background: #10B981;
-      border-color: #10B981;
-      color: white;
-    }
-    .step-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #E5E7EB;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      background: white;
-      color: #9CA3AF;
-      transition: all 0.3s ease;
-    }
-
-    /* Order Summary Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 9998;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .modal-overlay.show {
-      opacity: 1;
-    }
-    .modal-content {
-      background: white;
-      border-radius: 20px;
-      max-width: 600px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      transform: scale(0.9) translateY(20px);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .modal-overlay.show .modal-content {
-      transform: scale(1) translateY(0);
-    }
-
-    /* Success Animation */
-    @keyframes checkmark {
-      0% {
-        stroke-dashoffset: 100;
-      }
-      100% {
-        stroke-dashoffset: 0;
-      }
-    }
-    .success-checkmark {
-      stroke-dasharray: 100;
-      stroke-dashoffset: 100;
-      animation: checkmark 0.6s ease forwards;
-    }
-  </style>
 </head>
 <body class="bg-spice-surface text-stone-800 font-sans antialiased selection:bg-spice-700 selection:text-white pb-28 md:pb-0 overflow-x-hidden">
 
@@ -516,6 +250,111 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE SATTVA INDIA SECTION -->
+  <section id="why-sattva" class="py-20 bg-gradient-to-br from-stone-50 via-white to-spice-surface/30 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+        <span class="text-xs font-bold uppercase tracking-widest text-spice-700 bg-red-50 px-3 py-1 rounded-md">Why Partner With Us</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-black text-stone-900 mt-2">Why Choose Sattva India</h2>
+        <p class="text-stone-600 text-sm mt-2">Built specifically for high-volume commercial kitchens and institutional food buyers across Maharashtra and beyond.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Differentiator 1: Consistent Quality -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-spice-700 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-spice-700 to-spice-800 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="award" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">Batch-to-Batch Consistency</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">Every order maintains the exact same taste profile, color intensity, and aroma strength. Critical for hotels and restaurants where menu consistency is non-negotiable.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-spice-700 uppercase tracking-wide">ISO 9001:2015 Certified Process</span>
+          </div>
+        </div>
+
+        <!-- Differentiator 2: Direct Supply -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-emerald-600 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="factory" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">Direct From Manufacturer</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">No middlemen, no distributors. Direct supply from our Pune facility means better pricing, faster delivery, and complete transparency in sourcing and processing.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-emerald-700 uppercase tracking-wide">Factory to Kitchen Direct</span>
+          </div>
+        </div>
+
+        <!-- Differentiator 3: Flexible Packaging -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-amber-600 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="package" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">Flexible Bulk Packaging</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">From 500g trial packs to 50kg commercial sacks. We adapt packaging sizes to your kitchen's storage capacity and consumption rate without forcing MOQs.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">Customized Pack Sizes</span>
+          </div>
+        </div>
+
+        <!-- Differentiator 4: Complete Product Range -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-blue-600 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="400">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="shopping-cart" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">One-Stop Food Partner</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">Beyond spices: sauces, pickles, papads, dry fruits, and pantry essentials. Consolidate your suppliers, reduce procurement complexity, and get everything in one order.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-blue-700 uppercase tracking-wide">65+ Product SKUs</span>
+          </div>
+        </div>
+
+        <!-- Differentiator 5: Lab Verified Safety -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-purple-600 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="500">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-700 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="flask-conical" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">HPLC Lab Tested Safety</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">Every batch tested for Sudan dyes, aflatoxins, and moisture content. Complete Certificate of Analysis (COA) available on request for audit and export compliance.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-purple-700 uppercase tracking-wide">Zero Synthetic Additives</span>
+          </div>
+        </div>
+
+        <!-- Differentiator 6: Pune Local Delivery -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-stone-200 hover:border-red-600 hover:shadow-xl transition-all duration-300 group hover-lift" data-aos="fade-up" data-aos-delay="600">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-600 to-red-700 text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="truck" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-serif font-bold text-stone-900 text-xl mb-3">Reliable Pune Logistics</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">Daily scheduled deliveries across PCMC, Hinjewadi, and Central Pune. Same-day dispatch for urgent requirements within Pune city limits during business hours.</p>
+          <div class="mt-4 pt-4 border-t border-stone-100">
+            <span class="text-xs font-bold text-red-700 uppercase tracking-wide">Daily Delivery Grid</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="mt-14 bg-gradient-to-r from-spice-900 to-spice-800 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden" data-aos="zoom-in" data-aos-delay="700">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
+        <div class="relative z-10">
+          <h3 class="text-2xl sm:text-3xl font-serif font-black mb-3">Ready to Partner with Sattva India?</h3>
+          <p class="text-stone-200 text-sm max-w-2xl mx-auto mb-6">Request a free chef's sample kit or get a customized bulk quotation for your commercial kitchen.</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="#catalog" class="inline-flex items-center gap-2 bg-white text-spice-900 font-bold px-8 py-4 rounded-xl hover:bg-stone-100 transition-all shadow-lg hover:shadow-xl btn-enhanced">
+              <i data-lucide="package" class="w-5 h-5"></i> Browse Product Catalog
+            </a>
+            <a href="#quote-section" class="inline-flex items-center gap-2 bg-spice-amber hover:bg-yellow-400 text-stone-900 font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl btn-enhanced">
+              <i data-lucide="send" class="w-5 h-5"></i> Request Quotation
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
