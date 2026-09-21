@@ -1,0 +1,303 @@
+<!-- EXAMPLE: Product Display with Rates (Like Svasthyaa) -->
+<!-- This shows how products should be displayed with pricing -->
+
+<section class="py-20 bg-spice-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-spice-700 bg-red-50 px-3 py-1 rounded-md">Shop by Preference</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-black text-stone-900 mt-2">HORECA Product Collection</h2>
+      <p class="text-stone-600 text-sm mt-2">Browse our commercial-grade products with transparent bulk pricing</p>
+    </div>
+
+    <!-- Category Pills (like the circular filters in example) -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="px-6 py-3 rounded-full bg-spice-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all">
+        Best Sellers
+      </button>
+      <button class="px-6 py-3 rounded-full bg-stone-100 text-stone-700 font-bold text-sm hover:bg-stone-200 transition-all">
+        Masale / Spices
+      </button>
+      <button class="px-6 py-3 rounded-full bg-stone-100 text-stone-700 font-bold text-sm hover:bg-stone-200 transition-all">
+        Sauces & Pickles
+      </button>
+      <button class="px-6 py-3 rounded-full bg-stone-100 text-stone-700 font-bold text-sm hover:bg-stone-200 transition-all">
+        High Protein
+      </button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+      <!-- Product Card 1 - Garam Masala -->
+      <div class="bg-white rounded-2xl border-2 border-stone-200 overflow-hidden hover:shadow-xl hover:border-spice-700 transition-all duration-300 group">
+        <!-- Badge -->
+        <div class="relative">
+          <div class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10">
+            BEST SELLER
+          </div>
+          <!-- Product Image Placeholder -->
+          <div class="aspect-square bg-gradient-to-br from-spice-700/10 to-spice-amber/10 flex items-center justify-center">
+            <div class="text-center p-6">
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full bg-gradient-to-br from-spice-700 to-spice-900 flex items-center justify-center">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+              </div>
+              <p class="text-xs text-stone-400">[Product Photo]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="p-5">
+          <h3 class="font-bold text-stone-900 text-base mb-1">Garam Masala</h3>
+          
+          <!-- Price -->
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-2xl font-black text-spice-700">₹180</span>
+            <span class="text-sm text-stone-400 line-through">₹220</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">18% OFF</span>
+          </div>
+
+          <!-- Weight Selector -->
+          <div class="mb-3">
+            <label class="text-xs font-bold text-stone-600 uppercase tracking-wide mb-1.5 block">Weight</label>
+            <select class="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:border-spice-700">
+              <option>500 Gms</option>
+              <option>1 Kg</option>
+              <option>5 Kg</option>
+              <option>25 Kg Sack</option>
+            </select>
+          </div>
+
+          <!-- Quantity Selector + Add to Cart -->
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+              </button>
+              <span class="px-4 py-2 text-sm font-bold border-x border-stone-300">1</span>
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="flex-1 bg-spice-700 hover:bg-spice-800 text-white font-bold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm hover:shadow-md">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 2 - Laal Mirchi Powder -->
+      <div class="bg-white rounded-2xl border-2 border-stone-200 overflow-hidden hover:shadow-xl hover:border-spice-700 transition-all duration-300 group">
+        <!-- Badge -->
+        <div class="relative">
+          <div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10">
+            HIGH DEMAND
+          </div>
+          <!-- Product Image Placeholder -->
+          <div class="aspect-square bg-gradient-to-br from-red-700/10 to-red-400/10 flex items-center justify-center">
+            <div class="text-center p-6">
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+                </svg>
+              </div>
+              <p class="text-xs text-stone-400">[Product Photo]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="p-5">
+          <h3 class="font-bold text-stone-900 text-base mb-1">Laal Mirchi Powder</h3>
+          
+          <!-- Price -->
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-2xl font-black text-spice-700">₹160</span>
+            <span class="text-sm text-stone-400 line-through">₹190</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">16% OFF</span>
+          </div>
+
+          <!-- Weight Selector -->
+          <div class="mb-3">
+            <label class="text-xs font-bold text-stone-600 uppercase tracking-wide mb-1.5 block">Weight</label>
+            <select class="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:border-spice-700">
+              <option>500 Gms</option>
+              <option>1 Kg</option>
+              <option>5 Kg</option>
+              <option>25 Kg Sack</option>
+            </select>
+          </div>
+
+          <!-- Quantity Selector + Add to Cart -->
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+              </button>
+              <span class="px-4 py-2 text-sm font-bold border-x border-stone-300">1</span>
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="flex-1 bg-spice-700 hover:bg-spice-800 text-white font-bold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm hover:shadow-md">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 3 - Tomato Ketchup -->
+      <div class="bg-white rounded-2xl border-2 border-stone-200 overflow-hidden hover:shadow-xl hover:border-spice-700 transition-all duration-300 group">
+        <!-- Badge -->
+        <div class="relative">
+          <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10">
+            HORECA GRADE
+          </div>
+          <!-- Product Image Placeholder -->
+          <div class="aspect-square bg-gradient-to-br from-red-500/10 to-amber-400/10 flex items-center justify-center">
+            <div class="text-center p-6">
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+              </div>
+              <p class="text-xs text-stone-400">[Product Photo]</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="p-5">
+          <h3 class="font-bold text-stone-900 text-base mb-1">Tomato Ketchup</h3>
+          
+          <!-- Price -->
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-2xl font-black text-spice-700">₹140</span>
+            <span class="text-xs text-stone-500">(650g Bottle)</span>
+          </div>
+
+          <!-- Weight Selector -->
+          <div class="mb-3">
+            <label class="text-xs font-bold text-stone-600 uppercase tracking-wide mb-1.5 block">Pack Size</label>
+            <select class="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:border-spice-700">
+              <option>650g Bottle</option>
+              <option>5 Kg Commercial Jar</option>
+            </select>
+          </div>
+
+          <!-- Quantity Selector + Add to Cart -->
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+              </button>
+              <span class="px-4 py-2 text-sm font-bold border-x border-stone-300">1</span>
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="flex-1 bg-spice-700 hover:bg-spice-800 text-white font-bold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm hover:shadow-md">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card 4 - Halad (Turmeric) -->
+      <div class="bg-white rounded-2xl border-2 border-stone-200 overflow-hidden hover:shadow-xl hover:border-spice-700 transition-all duration-300 group">
+        <!-- Product Image Placeholder -->
+        <div class="aspect-square bg-gradient-to-br from-yellow-600/10 to-amber-400/10 flex items-center justify-center">
+          <div class="text-center p-6">
+            <div class="w-24 h-24 mx-auto mb-3 rounded-full bg-gradient-to-br from-yellow-600 to-amber-700 flex items-center justify-center">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <p class="text-xs text-stone-400">[Product Photo]</p>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="p-5">
+          <h3 class="font-bold text-stone-900 text-base mb-1">Halad (Turmeric)</h3>
+          
+          <!-- Price -->
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="text-2xl font-black text-spice-700">₹170</span>
+            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">High Curcumin</span>
+          </div>
+
+          <!-- Weight Selector -->
+          <div class="mb-3">
+            <label class="text-xs font-bold text-stone-600 uppercase tracking-wide mb-1.5 block">Weight</label>
+            <select class="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:border-spice-700">
+              <option>500 Gms</option>
+              <option>1 Kg</option>
+              <option>5 Kg</option>
+              <option>25 Kg Sack</option>
+            </select>
+          </div>
+
+          <!-- Quantity Selector + Add to Cart -->
+          <div class="flex items-center gap-2">
+            <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+              </button>
+              <span class="px-4 py-2 text-sm font-bold border-x border-stone-300">1</span>
+              <button class="px-3 py-2 hover:bg-stone-100 transition-colors">
+                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="flex-1 bg-spice-700 hover:bg-spice-800 text-white font-bold py-2.5 px-4 rounded-lg text-sm transition-all shadow-sm hover:shadow-md">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-12">
+      <button class="inline-flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-white font-bold px-10 py-4 rounded-xl text-sm transition-all shadow-lg hover:shadow-xl">
+        View all products →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- KEY ELEMENTS FROM SVASTHYAA EXAMPLE:
+1. ✅ Product image/placeholder
+2. ✅ Product name clearly visible
+3. ✅ Large prominent price (₹180 style)
+4. ✅ Discount/offer badges (18% OFF)
+5. ✅ Weight/size dropdown selector
+6. ✅ Quantity +/- controls
+7. ✅ "Add to cart" button
+8. ✅ Product badges (BEST SELLER, HIGH DEMAND)
+9. ✅ Category pills/filters at top
+10. ✅ Clean card-based grid layout
+-->

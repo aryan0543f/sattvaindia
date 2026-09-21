@@ -229,49 +229,84 @@ function renderCatalog() {
     const currentUnit = inCart ? inCart.unit : defaultPack;
     const currentQty = inCart ? inCart.qty : 1;
 
+    // Get badge style based on product tag
+    let badgeClass = 'bg-emerald-600';
+    if (p.tag.includes('High')) badgeClass = 'bg-red-600';
+    else if (p.tag.includes('HoReCa') || p.tag.includes('HORECA')) badgeClass = 'bg-blue-600';
+    else if (p.tag.includes('Premium') || p.tag.includes('Signature')) badgeClass = 'bg-purple-600';
+
     const card = document.createElement('div');
-    card.className = `bg-white rounded-2xl p-5 border transition-all duration-300 flex flex-col justify-between hover-lift ${inCart ? 'border-spice-700 ring-2 ring-spice-700/20 shadow-md' : 'border-stone-200 hover:border-stone-400'}`;
+    card.className = `bg-white rounded-2xl border-2 overflow-hidden hover:shadow-xl transition-all duration-300 group ${inCart ? 'border-spice-700 ring-2 ring-spice-700/20 shadow-lg' : 'border-stone-200 hover:border-spice-700'}`;
     
     card.innerHTML = `
-      <div>
-        <div class="flex items-start justify-between gap-2 mb-1.5">
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full shrink-0 border border-stone-300" style="background-color: ${p.color}"></span>
-            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-stone-100 text-stone-600 tracking-wider">${p.tag}</span>
+      <!-- Product Image & Badge -->
+      <div class="relative">
+        ${inCart ? `<div class="absolute top-3 left-3 ${badgeClass} text-white text-[10px] font-bold px-2 py-1 rounded-md z-10 animate-pulse">IN QUOTE</div>` : `<div class="absolute top-3 left-3 ${badgeClass} text-white text-[10px] font-bold px-2 py-1 rounded-md z-10">${p.tag.toUpperCase()}</div>`}
+        
+        <!-- Product Image Placeholder -->
+        <div class="aspect-square bg-gradient-to-br from-stone-100 to-stone-50 flex items-center justify-center border-b-2 border-stone-200">
+          <div class="text-center p-6">
+            <div class="w-20 h-20 mx-auto mb-2 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, ${p.color}20, ${p.color}40);">
+              <svg class="w-10 h-10" style="color: ${p.color};" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <p class="text-[10px] text-stone-400 font-medium">[Product Photo]</p>
           </div>
-          ${inCart ? '<span class="text-[11px] font-bold text-spice-700 bg-red-50 px-2 py-0.5 rounded animate-pulse">In Quote</span>' : ''}
         </div>
-        <h4 class="font-serif font-bold text-stone-900 text-base leading-snug mt-1">${p.name}</h4>
       </div>
 
-      <div class="mt-4 pt-3 border-t border-stone-100 space-y-2.5">
+      <!-- Product Info -->
+      <div class="p-5">
+        <h3 class="font-bold text-stone-900 text-base mb-2">${p.name}</h3>
+        
+        <!-- Price Section (Placeholder - will be added later) -->
+        <div class="flex items-baseline gap-2 mb-3">
+          <span class="text-2xl font-black text-spice-700">₹ —</span>
+          <span class="text-xs text-stone-500">(Price on request)</span>
+        </div>
+
+        <!-- Pack Format Selector -->
         ${orderMode === 'bulk' ? `
-          <div>
-            <label class="block text-[10px] uppercase font-bold text-stone-500 mb-1">Pack Format:</label>
-            <select id="unit-${p.id}" class="w-full text-xs font-semibold bg-stone-50 border border-stone-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-spice-700 transition-all">
+          <div class="mb-3">
+            <label class="text-xs font-bold text-stone-600 uppercase tracking-wide mb-1.5 block">Pack Size</label>
+            <select id="unit-${p.id}" class="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-300 rounded-lg focus:outline-none focus:border-spice-700 transition-all">
               ${p.packUnits.map(u => `<option value="${u}" ${u === currentUnit ? 'selected' : ''}>${u}</option>`).join('')}
             </select>
           </div>
         ` : `
-          <div class="p-2 bg-amber-50 rounded-lg border border-amber-200 text-[11px] text-amber-900 font-medium">
-            Chef Trial Packet: <strong>100g Sealed</strong>
+          <div class="mb-3 p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+            <div class="flex items-center gap-2 text-amber-900">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+              </svg>
+              <div>
+                <p class="text-xs font-bold">Chef Sample Kit</p>
+                <p class="text-[10px]">100g Trial Packet</p>
+              </div>
+            </div>
             <input type="hidden" id="unit-${p.id}" value="Chef Sample (100g)" />
           </div>
         `}
 
-        <div>
-          <label class="block text-[10px] uppercase font-bold text-stone-500 mb-1">Quantity (Units):</label>
-          <div class="flex items-center gap-2">
-            <div class="flex items-center border border-stone-300 rounded-lg bg-stone-50 overflow-hidden">
-              <button onclick="stepQty(${p.id}, -1)" class="px-2.5 py-1.5 text-stone-600 hover:bg-stone-200 font-bold text-xs transition-colors">-</button>
-              <input type="number" min="1" max="1000" id="qty-${p.id}" value="${currentQty}" class="w-12 text-center text-xs font-bold bg-transparent focus:outline-none" />
-              <button onclick="stepQty(${p.id}, 1)" class="px-2.5 py-1.5 text-stone-600 hover:bg-stone-200 font-bold text-xs transition-colors">+</button>
-            </div>
-            
-            <button onclick="updateCartLine(${p.id}, '${p.name}')" class="flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 active:scale-95 ${inCart ? 'bg-stone-900 text-white hover:bg-stone-800' : 'bg-spice-700 text-white hover:bg-spice-800 shadow-sm'}">
-              <i data-lucide="${inCart ? 'check' : 'plus'}" class="w-3.5 h-3.5"></i> ${inCart ? 'Update' : 'Add Units'}
+        <!-- Quantity Selector + Add to Cart -->
+        <div class="flex items-center gap-2">
+          <div class="flex items-center border border-stone-300 rounded-lg overflow-hidden">
+            <button onclick="stepQty(${p.id}, -1)" class="px-3 py-2 hover:bg-stone-100 transition-colors">
+              <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+              </svg>
+            </button>
+            <input type="number" min="1" max="1000" id="qty-${p.id}" value="${currentQty}" class="w-12 text-center text-sm font-bold focus:outline-none" />
+            <button onclick="stepQty(${p.id}, 1)" class="px-3 py-2 hover:bg-stone-100 transition-colors">
+              <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
             </button>
           </div>
+          <button onclick="updateCartLine(${p.id}, '${p.name}')" class="flex-1 py-2.5 px-4 rounded-lg text-sm font-bold transition-all shadow-sm hover:shadow-md active:scale-95 ${inCart ? 'bg-stone-900 hover:bg-stone-800 text-white' : 'bg-spice-700 hover:bg-spice-800 text-white'}">
+            ${inCart ? '✓ Update' : 'Add to cart'}
+          </button>
         </div>
       </div>
     `;
