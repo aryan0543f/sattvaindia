@@ -26,15 +26,42 @@
             serif: ['Playfair Display', 'serif'],
           },
           colors: {
+            sattva: {
+              green: {
+                50: '#f0f9ee',
+                100: '#ddf2d8',
+                200: '#bee5b5',
+                300: '#95d387',
+                400: '#6bbc5a',
+                500: '#5A9F4D',
+                600: '#3d7f34',
+                700: '#30652a',
+                800: '#285024',
+                900: '#234321',
+              },
+              red: {
+                50: '#fef2f2',
+                100: '#fee2e2',
+                200: '#fccaca',
+                300: '#fba5a5',
+                400: '#f57171',
+                500: '#B63838',
+                600: '#9a2d2d',
+                700: '#7f2525',
+                800: '#691f1f',
+                900: '#581c1c',
+              }
+            },
+            // Keep spice as alias for backward compatibility
             spice: {
-              900: '#150806',
-              800: '#2A110D',
-              700: '#8A1C14',
-              600: '#B91C1C',
-              500: '#C2410C',
-              amber: '#EAB308',
-              gold: '#D4AF37',
-              surface: '#FAF7F2',
+              900: '#581c1c',
+              800: '#691f1f',
+              700: '#B63838',
+              600: '#9a2d2d',
+              500: '#f57171',
+              amber: '#5A9F4D',
+              gold: '#6bbc5a',
+              surface: '#f0f9ee',
             }
           },
           animation: {
@@ -97,15 +124,22 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="#" class="group flex flex-col">
         <div class="flex items-center gap-3">
-          <!-- Logo Placeholder - Replace with actual logo -->
-          <div class="w-12 h-12 bg-spice-700 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            S
+          <!-- Sattva India Logo (✓ + O design) -->
+          <div class="w-14 h-14 relative shrink-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <!-- Green checkmark -->
+              <path d="M 10 45 L 30 65 L 35 60" stroke="#5A9F4D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- Red circle (O) -->
+              <circle cx="55" cy="40" r="20" stroke="#B63838" stroke-width="10" fill="none"/>
+              <!-- Green top part (like spoon handle) -->
+              <path d="M 75 20 L 88 8" stroke="#5A9F4D" stroke-width="12" stroke-linecap="round"/>
+            </svg>
           </div>
           <div class="flex flex-col">
-            <span class="text-2xl sm:text-3xl font-serif font-black tracking-tight text-spice-900 group-hover:text-spice-700 transition-colors uppercase">SATTVA INDIA</span>
+            <span class="text-2xl sm:text-3xl font-serif font-black tracking-tight text-sattva-red-700 group-hover:text-sattva-green-600 transition-colors uppercase">SATTVA INDIA</span>
             <span class="text-[10px] font-extrabold tracking-[0.2em] text-stone-500 uppercase -mt-1">YOUR TRUSTED FOOD PARTNER</span>
           </div>
-          <span class="inline-block w-2 h-2 rounded-full bg-spice-amber animate-ping"></span>
+          <span class="inline-block w-2 h-2 rounded-full bg-sattva-green-500 animate-ping"></span>
         </div>
       </a>
 

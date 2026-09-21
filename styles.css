@@ -1,5 +1,6 @@
 /* ========================================
    SATTVA INDIA - Main Stylesheet
+   New Color Scheme: Green (#5A9F4D) + Red (#B63838)
    ======================================== */
 
 /* ===== UTILITY CLASSES ===== */
@@ -20,7 +21,7 @@
 }
 .hover-lift:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px -10px rgba(138, 28, 20, 0.25);
+  box-shadow: 0 20px 40px -10px rgba(182, 56, 56, 0.25);
 }
 
 /* 2. Card Glow Effect */
@@ -29,7 +30,7 @@
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #EAB308 0%, #8A1C14 100%);
+  background: linear-gradient(135deg, #5A9F4D 0%, #B63838 100%);
   opacity: 0;
   z-index: -1;
   transition: opacity 0.4s ease;
@@ -47,7 +48,7 @@
 }
 .btn-enhanced:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px -8px rgba(138, 28, 20, 0.5);
+  box-shadow: 0 10px 30px -8px rgba(182, 56, 56, 0.5);
 }
 .btn-enhanced:active {
   transform: translateY(0) scale(0.98);
@@ -117,7 +118,7 @@ nav.scrolled {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #8A1C14 0%, #EAB308 100%);
+  background: linear-gradient(90deg, #B63838 0%, #5A9F4D 100%);
   z-index: 9999;
   transition: width 0.1s ease-out;
   box-shadow: 0 2px 8px rgba(234, 179, 8, 0.5);
@@ -193,9 +194,9 @@ nav.scrolled {
   display: none;
 }
 .progress-step.active .step-circle {
-  background: #8A1C14;
+  background: #B63838;
   color: white;
-  border-color: #8A1C14;
+  border-color: #B63838;
 }
 .progress-step.completed .step-circle {
   background: #10B981;
